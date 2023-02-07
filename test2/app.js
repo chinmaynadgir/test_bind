@@ -18,12 +18,13 @@ function add_form(){
         Datefield : `${date.value}`,
         Genderfield:`${gender.value}`};
     details_arr.push(details_obj);
-    console.log(details_arr);
     document.getElementById("form").reset();
     updateTable();
+    butt1.setAttribute("Value","ADD");
 }
 
 function edit_form(id) {
+    butt1.setAttribute("Value","SAVE")
     for (let x = 0; x < details_arr.length; x++) {
         if (details_arr[x].id === id) {
             let firstName = document.getElementById("firstName");
@@ -86,7 +87,7 @@ function updateTable(){
             let genderCell=row.insertCell(-1);
             genderCell.innerText=`${details_arr[row_num].Genderfield}`;
             let editbtn=document.createElement("button");
-            editbtn.addEventListener("click",()=>{edit_form.bind(row_num.id)});
+            editbtn.setAttribute("onclick","edit_form("+details_arr[row_num].id+")")
             editbtn.innerHTML="EDIT";
             editbtn.id=row_num.id;
             row.appendChild(editbtn);
@@ -94,9 +95,7 @@ function updateTable(){
             delbtn.innerHTML="DELETE";
             delbtn.setAttribute("id",row_num.id)
             delbtn.id=row_num.id;
-            delbtn.addEventListener("click",(event)=>{
-                console.log("Delete is called",arguments,event,event.target.id);
-                del_form.bind(this,row_num.id)})
+            delbtn.setAttribute("onclick","del_form("+details_arr[row_num].id+")")
             row.appendChild(delbtn);
         }
 }

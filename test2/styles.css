@@ -3,6 +3,11 @@
     justify-content: center;
     justify-items: center;
 }
-th,td,table{
+th,td{
     border: 1px solid;
+}
+
+table{
+    border: 1px solid;
+    margin: auto;
 }
