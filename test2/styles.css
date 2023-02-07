@@ -1,0 +1,8 @@
+#input-form{
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+}
+th,td,table{
+    border: 1px solid;
+}
