@@ -20,11 +20,11 @@ function add_form(){
     details_arr.push(details_obj);
     document.getElementById("form").reset();
     updateTable();
-    butt1.setAttribute("Value","ADD");
 }
 
 function edit_form(id) {
-    butt1.setAttribute("Value","SAVE")
+    butt1.setAttribute("Value","SAVE");
+    butt1.removeEventListener('click',add_form);
     for (let x = 0; x < details_arr.length; x++) {
         if (details_arr[x].id === id) {
             let firstName = document.getElementById("firstName");
@@ -41,8 +41,29 @@ function edit_form(id) {
         }
 
     }
-    del_form(id);
+    butt1.setAttribute('onclick','save_form('+id+')')
     return "";
+}
+
+function save_form(id){
+    let firstName = document.getElementById("firstName");
+    let lastName = document.getElementById("lastName");
+    let phone = document.getElementById("phone");
+    let date = document.getElementById("DOB");
+    let gender = document.getElementById("gender");
+    let details_obj= {
+        id:id,
+        Firstfield:  `${firstName.value}`,
+        LastField:  `${lastName.value}`,
+        Phonefield: `${phone.value}`,
+        Datefield : `${date.value}`,
+        Genderfield:`${gender.value}`};
+    del_form(id);
+    details_arr.push(details_obj);
+    document.getElementById("form").reset();
+    updateTable();
+    butt1.setAttribute("Value","ADD");
+    butt1.setAttribute('onclick','add_form('+')')
 }
 
 function del_form(id){
